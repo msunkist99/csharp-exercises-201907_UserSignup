@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.users.Count > 0)
+{
+    <table class="table">
+
+        <tr>
+            <th />
+            <th>Name</th>
+        </tr>
+
+        @foreach (var user in ViewBag.users)
+        {
+            <tr>
+                <td>
+                    <p><a asp-controller="User" asp-action="DisplayDetail" asp-route-userId="@user.UserId">Display User Details</a></p>
+                </td>
+                <td>@user.Username</td>
+            </tr>
+        }
+    </table>
+}
+
+else
+{
+    <h1>There are no users</h1>
+}

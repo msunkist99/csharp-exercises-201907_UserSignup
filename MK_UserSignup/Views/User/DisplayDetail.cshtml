@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "DisplayDetail";
+}
+
+<h1>@ViewBag.title</h1>
+
+<table class="table">
+
+    <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Created</th>
+        <th>User Id</th>
+    </tr>
+
+    <tr>
+        <td>@ViewBag.user.Username</td>
+        <td>@ViewBag.user.Email</td>
+        <td>@ViewBag.user.CreateDateTime</td>
+        <td>@ViewBag.user.UserId</td>
+    </tr>
+</table>
