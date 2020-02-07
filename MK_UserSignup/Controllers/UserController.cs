@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MK_UserSignup.Models;
+using MK_UserSignup.ViewModels;
 
 namespace MK_UserSignup.Controllers
 {
@@ -19,15 +20,17 @@ namespace MK_UserSignup.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.title = "Add User";
-            ViewBag.error = error;
+            //ViewBag.title = "Add User";
+            //ViewBag.error = error;
 
-            return View();
+            AddUserViewModel addUserViewModel = new AddUserViewModel();
+            return View(addUserViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(User user, string verifyPassword)
+        public IActionResult Add(AddUserViewModel addUserViewModel)
         {
+            /*
             if ((string.IsNullOrEmpty(user.Password)) || (string.IsNullOrEmpty(verifyPassword)))
             {
                 error = "Passwords cannot be empty";
@@ -46,14 +49,39 @@ namespace MK_UserSignup.Controllers
             error = null;
 
             return Redirect("/User");
+            */
+
+            if (ModelState.IsValid)
+            {
+                User user = new User()
+                {
+                    Username = addUserViewModel.Username,
+                    Email = addUserViewModel.Email,
+                    Password = addUserViewModel.Password
+                };
+
+                UserData.Add(user);
+                return Redirect("/User");
+           }
+
+            return View(addUserViewModel);
         }
 
         [HttpGet]
         public IActionResult DisplayDetail(int userId)
         {
-            ViewBag.title = "User Detail";
-            ViewBag.user = UserData.GetById(userId);
-            return View();
+            User user = UserData.GetById(userId);
+
+            AddUserViewModel addUserViewModel = new AddUserViewModel()
+            {
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                UserId = user.UserId,
+                CreateDateTime = user.CreateDateTime
+            };
+
+            return View(addUserViewModel);
         }
     }
 }

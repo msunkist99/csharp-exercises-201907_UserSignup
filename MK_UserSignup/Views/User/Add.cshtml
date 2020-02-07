@@ -1,34 +1,35 @@
-﻿@{
+﻿@model MK_UserSignup.ViewModels.AddUserViewModel
 
-}
+<h1>Add User</h1>
 
-<h1>@ViewBag.title</h1>
+    <form method="post">
 
-<form method="post">
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input class="form-control" asp-for="Username" />
+            <span asp-validation-for="Username"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="password" name="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VerifyPassword"></label>
+            <input type="password" name="VerifyPassword" />
+            <span asp-validation-for="VerifyPassword"></span>
+        </div>
+
+        <input type="submit" value="Add User" />
 
 
-    <label for="userName">User Name</label>
-    <input type="text" name="userName" />
-    <br />
-
-    <label for="email">User Email</label>
-    <input type="text" name="email" />
-    <br />
-
-    <label for="password">User Password</label>
-    <input type="password" name="password" />
-    <br />
-
-    <label for="verifyPassword">User Verify Password</label>
-    <input type="password" name="verifyPassword" />
-
-    <br />
-
-    <input type="submit" value="Add User" />
-
-    @if (ViewBag.error != null)
-    {
-        <p><label>@ViewBag.error</label></p>
-    }
-</form>
+    </form>
 

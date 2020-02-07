@@ -1,9 +1,6 @@
-﻿
-@{
-    ViewData["Title"] = "DisplayDetail";
-}
+﻿@model MK_UserSignup.ViewModels.AddUserViewModel
 
-<h1>@ViewBag.title</h1>
+<h1>User Detail</h1>
 
 <table class="table">
 
@@ -15,9 +12,9 @@
     </tr>
 
     <tr>
-        <td>@ViewBag.user.Username</td>
-        <td>@ViewBag.user.Email</td>
-        <td>@ViewBag.user.CreateDateTime</td>
-        <td>@ViewBag.user.UserId</td>
+        <td>@Model.Username</td>
+        <td>@Model.Email</td>
+        <td>@Model.CreateDateTime</td>
+        <td>@Model.UserId</td>
     </tr>
 </table>
