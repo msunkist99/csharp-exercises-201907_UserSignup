@@ -9,14 +9,16 @@ namespace MK_UserSignup.ViewModels
     public class AddUserViewModel
     {
         [Required]
+        [MinLength(6, ErrorMessage = "User name must be at least 6 characters")]
+        [StringLength(15, ErrorMessage = "User name must be a maximum of 15 characters")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string Username { get; set; }
         
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(6)]
-        [Compare(nameof(VerifyPassword),ErrorMessage = "Passwords do not match")]
+       [Compare(nameof(VerifyPassword),ErrorMessage = "Passwords do not match")]
         public string Password { get; set; }
 
         [Required]
